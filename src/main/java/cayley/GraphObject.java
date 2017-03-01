@@ -1,20 +1,22 @@
 package cayley;
 
 /**
- * Created by kai on 17/2/26.
+ * Graph Object
+ *
+ * @author Tian Xia
+ *         Mar 01, 2017 12:40 PM
  */
 public class GraphObject {
-
     public GremlinQuery V(){
         return new GremlinQuery("g.V()");
     }
 
     public GremlinQuery V(String[] nodeIds){
-        String nodes = "";
+        StringBuilder sb = new StringBuilder();
         for(int i=0; i<nodeIds.length; i++){
-            nodes += String.format((i==nodeIds.length-1)? "'%s'": "'%s'," , nodeIds[i]);
+            sb.append(String.format((i==nodeIds.length-1)? "'%s'": "'%s'," , nodeIds[i]));
         }
-        return new GremlinQuery(String.format("g.V(%s)",nodes));
+        return new GremlinQuery(String.format("g.V(%s)",sb.toString()));
     }
 
     public GremlinQuery M(){
